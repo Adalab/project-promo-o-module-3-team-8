@@ -1,0 +1,26 @@
+html {
+  height: 100vh;
+}
+body {
+  height: 100vh;
+}
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.maincontainer {
+  @media all and(min-width:768px) {
+    height: 100%;
+  }
+}
+.blueSection {
+  @media all and(min-width:768px) {
+    height: 100%;
+  }
+}
+.whiteSection {
+  @media all and(min-width:768px) {
+    height: 100%;
+  }
+}

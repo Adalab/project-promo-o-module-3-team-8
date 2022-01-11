@@ -1,0 +1,92 @@
+.design {
+  color: $colorText;
+  font-family: $fontMain;
+  text-transform: uppercase;
+  border: none;
+  border-bottom: 1px #d8d8d8 solid;
+
+  &__legend {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+    &:hover {
+      color: #e17334;
+    }
+
+    &--wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    &--icon {
+      color: $colorMain;
+      font-size: 18px;
+      margin-right: 10px;
+    }
+
+    &--title {
+      font-size: 18px;
+    }
+  }
+
+  &__colors {
+    display: flex;
+    justify-content: space-between;
+    margin: 22px 0 10px 19px;
+    font-size: 14px;
+
+    &--item {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.palette {
+  width: 30px;
+  height: 25px;
+
+  &__first {
+    &--firstColor {
+      background-color: #114e4e;
+    }
+    &--secondColor {
+      background-color: #438792;
+    }
+    &--thirdColor {
+      background-color: #a2deaf;
+    }
+  }
+
+  &__second {
+    &--firstColor {
+      background-color: #420101;
+    }
+    &--secondColor {
+      background-color: #bd1010;
+    }
+    &--thirdColor {
+      background-color: #e95626;
+    }
+  }
+
+  &__third {
+    &--firstColor {
+      background-color: #3e5b65;
+    }
+    &--secondColor {
+      background-color: #eab052;
+    }
+    &--thirdColor {
+      background-color: #a0c0cf;
+    }
+  }
+}
+
+.checkbox {
+  margin-right: 10px;
+}

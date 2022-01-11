@@ -1,0 +1,40 @@
+/*COLORS*/
+
+$colorButton: #3e5b65;
+$colorMain: #e17334;
+$colorText: #54585a;
+$colorLegend: #114e4e;
+$colorPlaceholder: #c5c5c5;
+
+/*FONTS*/
+$fontMain: "Open Sans", sans-serif;
+$fontCard: "Montserrat", sans-serif;
+
+/*MIXINS LABELS AND PLACHOLDERS*/
+
+@mixin label() {
+    height:18px;
+    font-family: $fontMain;
+    font-size: 14px;
+    line-height: 1.43;
+    color:$colorLegend;
+    margin:18px 0 7px 0;
+}
+
+@mixin input() {
+   height:30px;
+   border:solid 1px 
+   #a2deaf; 
+   padding:0 3px;
+}
+
+@mixin text-h2{
+    width:78px;
+    height:25px;
+    font-family:$fontMain;
+    font-size:18px;
+    font-weight: 600;
+    color:#54585a;
+    text-transform: uppercase;
+    margin: 10px 51px 25px 10px;
+}

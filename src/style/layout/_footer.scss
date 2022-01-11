@@ -1,0 +1,38 @@
+.footer {
+  background-color: #FFFFFF;
+  border-top: 1px #D8D8D8 solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  @media all and(min-width:768px) {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    text-align: end;
+  }
+}
+.copyFooter {
+  font-family: $fontMain;
+  font-size: 14px;
+  color: #B8B8B9;
+  text-transform: none;
+  object-fit: contain;
+  @media all and(min-width:768px) {
+    margin-left: 41px;
+    line-height: 20px;
+  }
+}
+.logoFooter {
+  width: 103px;
+  height: 40px;
+  object-fit: contain;
+  margin: 5px;
+  @media all and(min-width:768px) {
+    margin-right: 40px;
+    width: 103px;
+    height: 40px;
+    margin-top: 10px;
+  }
+}
