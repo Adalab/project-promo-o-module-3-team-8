@@ -1,4 +1,5 @@
-import '../style/App.scss'; 
+import "../style/App.scss";
+import { useState } from "react";
 // import logoadalab from '../images/logo-adalab.png';
 // import awesomecards from '../images/logo-awesome-profile-cards.svg';
 import truthysmall from "../images/logo-truthy-and-the-booleans-40px.jpg";
@@ -7,6 +8,51 @@ import truthybig from "../images/logo-truthy-and-the-booleans-50px.jpg";
 // import userimage from '../images/user_image.png';
 
 function App() {
+  const [data, setData] = useState({
+    palette: 1,
+    name: "",
+    job: "",
+    email: "",
+    phone: "",
+    linkedin: "",
+    github: "",
+  });
+
+  const handleInput = (ev) => {
+    const inputChange = ev.currentTarget.name;
+    if (inputChange === "name") {
+      setData({
+        ...data,
+        name: ev.currentTarget.value,
+      });
+    } else if (inputChange === "job") {
+      setData({
+        ...data,
+        job: ev.currentTarget.value,
+      });
+    } else if (inputChange === "email") {
+      setData({
+        ...data,
+        email: ev.currentTarget.value,
+      });
+    } else if (inputChange === "phone") {
+      setData({
+        ...data,
+        phone: ev.currentTarget.value,
+      });
+    } else if (inputChange === "linkedin") {
+      setData({
+        ...data,
+        linkedin: ev.currentTarget.value,
+      });
+    } else if (inputChange === "github") {
+      setData({
+        ...data,
+        github: ev.currentTarget.value,
+      });
+    }
+  };
+
   return (
     <div className="page">
       <header className="header">
@@ -17,40 +63,72 @@ function App() {
       <main>
         <form className="maincontainer" action="#" method="post">
           <section className="blueSection">
-                <button className="blueSection__reset js_reset" type="reset" defaultValue="reset"><i
-                        className="blueSection__reset--icon far fa-trash-alt"></i>Reset
-                </button>
-                <article className="blueSection__article">
+            <button
+              className="blueSection__reset js_reset"
+              type="reset"
+              defaultValue="reset"
+            >
+              <i className="blueSection__reset--icon far fa-trash-alt"></i>Reset
+            </button>
 
-                    <div className="blueSection__article--group">
-                        <div className="rectangle js_rectangle palette1"></div>
-                        <h2 className="title js_preview_title palette1">Nombre Apellido</h2>
-                        <h5 className="subtitle js_preview_subtitle">Front-End developer</h5>
-                    </div>
+            <article className="blueSection__article">
+              <div className="blueSection__article--group">
+                <div className="rectangle js_rectangle palette1"></div>
+                <h2 className="title js_preview_title palette1">
+                  {data.name || "Nombre y apellido"}
+                  {/* {data.name === '' ? 'Nombre y apellidos' : data.name} */}
+                </h2>
+                <h5 className="subtitle js_preview_subtitle">
+                  {data.job || "Front-End developer"}
+                </h5>
+              </div>
 
-                    <div className="blueSection__article--photo js__profile-image"></div>
+              <div className="blueSection__article--photo js__profile-image"></div>
 
-                    <ul className="blueSection__article--containerList">
-                        <li className="item"><a href="/" className="js-phoneIcon"><i
-                                    className="icon fas fa-mobile-alt  js_icon palette1"></i></a>
-                        </li>
+              <ul className="blueSection__article--containerList">
+                <li className="item">
+                  <a href={data.phone || ""} className="js-phoneIcon">
+                    <i className="icon fas fa-mobile-alt  js_icon palette1"></i>
+                  </a>
+                </li>
 
-                        <li className="item"> <a href="
-                                mailto:email@email.com?Subject=Interesado%20en%20contactar%20contigo" className="js-envelope "
-                                target="_blank"><i className="icon far fa-envelope js_icon palette1"></i></a>
-                        </li>
+                <li className="item">
+                  <a
+                    href={`mailto:${
+                      data.email || "email@gmail.com"
+                    }?Subject=Interesado%20en%20contactar%20contigo`}
+                    className="js-envelope "
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i className="icon far fa-envelope js_icon palette1"></i>
+                  </a>
+                </li>
 
-                        <li className="item"> <a href="https://es.linkedin.com
-                            " className="js-linkedinIcon " target="_blank" rel="noreferrer"><i className="icon fab fa-linkedin-in js_icon palette1"></i></a>
-                        </li>
+                <li className="item">
+                  <a
+                    href= {data.linkedin || "https://es.linkedin.com"}
+                    className="js-linkedinIcon "
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i className="icon fab fa-linkedin-in js_icon palette1"></i>
+                  </a>
+                </li>
 
-                        <li className="item"> <a href="https://github.com/" className="js-githubIcon " target="_blank" rel="noreferrer"><i
-                                    className="icon fab fa-github-alt js_icon palette1"></i></a></li>
-                    </ul>
-
-                </article>
-
-            </section>
+                <li className="item">
+                  <a
+                    href= {data.github || "https://github.com/"}
+                    className="js-githubIcon "
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i className="icon fab fa-github-alt js_icon palette1"></i>
+                  </a>
+                </li>
+              </ul>
+            </article>
+          </section>
           <section className="whiteSection">
             <fieldset className="design">
               <legend className="design__legend js_collapsable_title_design js_title_list">
@@ -103,7 +181,8 @@ function App() {
                 </ul>
               </div>
             </fieldset>
-            <fieldset className="fill collapsed">
+
+            <fieldset className="fill">
               <legend className="fill__anunc js_collapsable_title_fill js_title_list">
                 <div className="fill__anunc--wrapper">
                   <i className=" far fa-keyboard fill__anunc--wrapper--icon"></i>
@@ -116,7 +195,10 @@ function App() {
                   Nombre completo
                 </label>
 
+                {/* FORMULARIO */}
+
                 <input
+                  onChange={handleInput}
                   id="name"
                   className="fill__form--input js_name js_input"
                   type="text"
@@ -130,6 +212,7 @@ function App() {
                 </label>
 
                 <input
+                  onChange={handleInput}
                   type="text"
                   id="job"
                   name="job"
@@ -159,6 +242,7 @@ function App() {
                 </label>
 
                 <input
+                  onChange={handleInput}
                   type="email"
                   className="fill__form--input js_email js_input"
                   id="email"
@@ -172,6 +256,7 @@ function App() {
                 </label>
 
                 <input
+                  onChange={handleInput}
                   type="tel"
                   className="fill__form--input js_phone js_input"
                   id="phone"
@@ -185,6 +270,7 @@ function App() {
                 </label>
 
                 <input
+                  onChange={handleInput}
                   type="text"
                   className="fill__form--input js_linkedin js_input"
                   id="linkedin"
@@ -196,6 +282,7 @@ function App() {
                   Github
                 </label>
                 <input
+                  onChange={handleInput}
                   type="text"
                   className="fill__form--input js_github js_input"
                   id="github"
@@ -204,7 +291,7 @@ function App() {
                 />
               </section>
             </fieldset>
-            <fieldset className="share collapsed">
+            <fieldset className="share">
               <legend className="share__legend js_collapsable_title_share js_title_list">
                 <div className="share__legend--wrapper">
                   <i className="fas fa-share-alt share__legend--icon"></i>
