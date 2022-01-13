@@ -77,8 +77,8 @@ function App() {
 
             <article className="blueSection__article">
               <div className="blueSection__article--group">
-                <div className="rectangle js_rectangle palette1"></div>
-                <h2 className="title js_preview_title palette1">
+                <div className={`rectangle js_rectangle ${data.palette}`}></div>
+                <h2 className={`title js_preview_title ${data.palette}`}>
                   {data.name || 'Nombre y apellido'}
                   {/* {data.name === '' ? 'Nombre y apellidos' : data.name} */}
                 </h2>
@@ -92,7 +92,7 @@ function App() {
               <ul className="blueSection__article--containerList">
                 <li className="item">
                   <a href={data.phone || ''} className="js-phoneIcon">
-                    <i className="icon fas fa-mobile-alt  js_icon palette1"></i>
+                    <i className={`icon fas fa-mobile-alt  js_icon ${data.palette}`}></i>
                   </a>
                 </li>
 
@@ -105,7 +105,7 @@ function App() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <i className="icon far fa-envelope js_icon palette1"></i>
+                    <i className={`icon far fa-envelope js_icon ${data.palette}`}></i>
                   </a>
                 </li>
 
@@ -116,7 +116,7 @@ function App() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <i className="icon fab fa-linkedin-in js_icon palette1"></i>
+                    <i className={`icon fab fa-linkedin-in js_icon ${data.palette}`}></i>
                   </a>
                 </li>
 
@@ -127,7 +127,7 @@ function App() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <i className="icon fab fa-github-alt js_icon palette1"></i>
+                    <i className={`icon fab fa-github-alt js_icon ${data.palette}`}></i>
                   </a>
                 </li>
               </ul>
