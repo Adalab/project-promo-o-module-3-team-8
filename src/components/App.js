@@ -9,7 +9,7 @@ import truthybig from '../images/logo-truthy-and-the-booleans-50px.jpg';
 
 function App() {
   const [data, setData] = useState({
-    palette: "palette1",
+    palette: 'palette1',
     name: '',
     job: '',
     email: '',
@@ -154,7 +154,6 @@ function App() {
                       defaultValue="palette1"
                       className="checkbox"
                       checked={data.palette === 'palette1'}
-                
                     />
                     <div className="palette palette__first--firstColor"></div>
                     <div className="palette palette__first--secondColor"></div>
