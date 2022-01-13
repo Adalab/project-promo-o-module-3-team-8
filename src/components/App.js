@@ -1,56 +1,60 @@
-import "../style/App.scss";
-import { useState } from "react";
+import '../style/App.scss';
+import { useState } from 'react';
 // import logoadalab from '../images/logo-adalab.png';
 // import awesomecards from '../images/logo-awesome-profile-cards.svg';
-import truthysmall from "../images/logo-truthy-and-the-booleans-40px.jpg";
-import truthybig from "../images/logo-truthy-and-the-booleans-50px.jpg";
+import truthysmall from '../images/logo-truthy-and-the-booleans-40px.jpg';
+import truthybig from '../images/logo-truthy-and-the-booleans-50px.jpg';
 // import truthytrans from '../images/logo-truthy-and-the-booleans-419px.png';
 // import userimage from '../images/user_image.png';
 
 function App() {
   const [data, setData] = useState({
-    palette: 1,
-    name: "",
-    job: "",
-    email: "",
-    phone: "",
-    linkedin: "",
-    github: "",
+    palette: "palette1",
+    name: '',
+    job: '',
+    email: '',
+    phone: '',
+    linkedin: '',
+    github: '',
   });
 
   const handleInput = (ev) => {
     const inputChange = ev.currentTarget.name;
-    if (inputChange === "name") {
-      setData({
-        ...data,
-        name: ev.currentTarget.value,
-      });
-    } else if (inputChange === "job") {
-      setData({
-        ...data,
-        job: ev.currentTarget.value,
-      });
-    } else if (inputChange === "email") {
-      setData({
-        ...data,
-        email: ev.currentTarget.value,
-      });
-    } else if (inputChange === "phone") {
-      setData({
-        ...data,
-        phone: ev.currentTarget.value,
-      });
-    } else if (inputChange === "linkedin") {
-      setData({
-        ...data,
-        linkedin: ev.currentTarget.value,
-      });
-    } else if (inputChange === "github") {
-      setData({
-        ...data,
-        github: ev.currentTarget.value,
-      });
-    }
+    setData({
+      ...data,
+      [inputChange]: ev.currentTarget.value,
+    });
+    // if (inputChange === "name") {
+    //   setData({
+    //     ...data,
+    //     name: ev.currentTarget.value,
+    //   });
+    // } else if (inputChange === "job") {
+    //   setData({
+    //     ...data,
+    //     job: ev.currentTarget.value,
+    //   });
+    // } else if (inputChange === "email") {
+    //   setData({
+    //     ...data,
+    //     email: ev.currentTarget.value,
+    //   });
+    // } else if (inputChange === "phone") {
+    //   setData({
+    //     ...data,
+    //     phone: ev.currentTarget.value,
+    //   });
+    // } else if (inputChange === "linkedin") {
+    //   setData({
+    //     ...data,
+    //     linkedin: ev.currentTarget.value,
+    //   });
+    // } else if (inputChange === "github") {
+    //   setData({
+    //     ...data,
+    //     github: ev.currentTarget.value,
+    //   });
+    // }
   };
 
   return (
@@ -75,11 +79,11 @@ function App() {
               <div className="blueSection__article--group">
                 <div className="rectangle js_rectangle palette1"></div>
                 <h2 className="title js_preview_title palette1">
-                  {data.name || "Nombre y apellido"}
+                  {data.name || 'Nombre y apellido'}
                   {/* {data.name === '' ? 'Nombre y apellidos' : data.name} */}
                 </h2>
                 <h5 className="subtitle js_preview_subtitle">
-                  {data.job || "Front-End developer"}
+                  {data.job || 'Front-End developer'}
                 </h5>
               </div>
 
@@ -87,7 +91,7 @@ function App() {
 
               <ul className="blueSection__article--containerList">
                 <li className="item">
-                  <a href={data.phone || ""} className="js-phoneIcon">
+                  <a href={data.phone || ''} className="js-phoneIcon">
                     <i className="icon fas fa-mobile-alt  js_icon palette1"></i>
                   </a>
                 </li>
@@ -95,7 +99,7 @@ function App() {
                 <li className="item">
                   <a
                     href={`mailto:${
-                      data.email || "email@gmail.com"
+                      data.email || 'email@gmail.com'
                     }?Subject=Interesado%20en%20contactar%20contigo`}
                     className="js-envelope "
                     target="_blank"
@@ -107,7 +111,7 @@ function App() {
 
                 <li className="item">
                   <a
-                    href= {data.linkedin || "https://es.linkedin.com"}
+                    href={data.linkedin || 'https://es.linkedin.com'}
                     className="js-linkedinIcon "
                     target="_blank"
                     rel="noreferrer"
@@ -118,7 +122,7 @@ function App() {
 
                 <li className="item">
                   <a
-                    href= {data.github || "https://github.com/"}
+                    href={data.github || 'https://github.com/'}
                     className="js-githubIcon "
                     target="_blank"
                     rel="noreferrer"
@@ -143,12 +147,14 @@ function App() {
                 <ul>
                   <li className="design__colors--item">
                     <input
+                      onChange={handleInput}
                       type="radio"
                       id="palette1"
                       name="palette"
                       defaultValue="palette1"
                       className="checkbox"
-                      defaultChecked
+                      checked={data.palette === 'palette1'}
+                
                     />
                     <div className="palette palette__first--firstColor"></div>
                     <div className="palette palette__first--secondColor"></div>
@@ -156,11 +162,13 @@ function App() {
                   </li>
                   <li className="design__colors--item">
                     <input
+                      onChange={handleInput}
                       type="radio"
                       id="palette2"
                       name="palette"
                       defaultValue="palette2"
                       className="checkbox"
+                      checked={data.palette === 'palette2'}
                     />
                     <div className="palette palette__second--firstColor"></div>
                     <div className="palette palette__second--secondColor"></div>
@@ -168,11 +176,13 @@ function App() {
                   </li>
                   <li className="design__colors--item">
                     <input
+                      onChange={handleInput}
                       type="radio"
                       id="palette3"
                       name="palette"
                       defaultValue="palette3"
                       className="checkbox"
+                      checked={data.palette === 'palette3'}
                     />
                     <div className="palette palette__third--firstColor"></div>
                     <div className="palette palette__third--secondColor"></div>
@@ -204,6 +214,7 @@ function App() {
                   type="text"
                   placeholder="Ej. Sally Jill"
                   name="name"
+                  value={data.name}
                   required
                 />
 
@@ -218,6 +229,7 @@ function App() {
                   name="job"
                   className="fill__form--input js_job js_input"
                   placeholder="Ej. front-end unicorn"
+                  value={data.job}
                   required
                 />
 
@@ -248,6 +260,7 @@ function App() {
                   id="email"
                   name="email"
                   placeholder="Ej. sally.jill@gmail.com"
+                  value={data.email}
                   required
                 />
 
@@ -262,6 +275,7 @@ function App() {
                   id="phone"
                   placeholder=" Ej: 555-55-55-55"
                   name="phone"
+                  value={data.phone}
                   href=""
                 />
 
@@ -275,6 +289,7 @@ function App() {
                   className="fill__form--input js_linkedin js_input"
                   id="linkedin"
                   placeholder=" Ej: linkedin.com/in/sally.hill"
+                  value={data.linkedin}
                   name="linkedin"
                 />
 
@@ -288,6 +303,7 @@ function App() {
                   id="github"
                   placeholder=" Ej: @sally-hill"
                   name="github"
+                  value={data.github}
                 />
               </section>
             </fieldset>
