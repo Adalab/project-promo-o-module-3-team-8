@@ -18,6 +18,16 @@ function App() {
     github: '',
   });
 
+  const [arrow, setArrow] = useState('collapsed')
+
+const handleCollapse = (ev) => {
+  if (arrow === 'collapsed') {
+    setArrow('')
+  } else {
+    setArrow('collapsed')
+  }
+}
+
   const handleInput = (ev) => {
     const inputChange = ev.currentTarget.name;
     setData({
@@ -135,7 +145,7 @@ function App() {
           </section>
           <section className="whiteSection">
             <fieldset className="design">
-              <legend className="design__legend js_collapsable_title_design js_title_list">
+              <legend onClick={handleCollapse} className={`design__legend js_collapsable_title_design js_title_list ${arrow}`}>
                 <div className="design__legend--wrapper">
                   <i className="far fa-object-ungroup design__legend--icon"></i>
                   <h2 className="design__legend--title">Diseña</h2>
@@ -192,7 +202,7 @@ function App() {
             </fieldset>
 
             <fieldset className="fill">
-              <legend className="fill__anunc js_collapsable_title_fill js_title_list">
+              <legend onClick={handleCollapse} className="fill__anunc js_collapsable_title_fill js_title_list">
                 <div className="fill__anunc--wrapper">
                   <i className=" far fa-keyboard fill__anunc--wrapper--icon"></i>
                   <h2 className="fill__anunc--wrapper--h2">Rellena</h2>
@@ -307,7 +317,7 @@ function App() {
               </section>
             </fieldset>
             <fieldset className="share">
-              <legend className="share__legend js_collapsable_title_share js_title_list">
+              <legend onClick={handleCollapse} className="share__legend js_collapsable_title_share js_title_list">
                 <div className="share__legend--wrapper">
                   <i className="fas fa-share-alt share__legend--icon"></i>
                   <h2 className="share__legend--title">Comparte</h2>
