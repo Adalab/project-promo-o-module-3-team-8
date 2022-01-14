@@ -9,7 +9,7 @@ import truthybig from '../images/logo-truthy-and-the-booleans-50px.jpg';
 
 function App() {
   const [data, setData] = useState({
-    palette: "palette1",
+    palette: 'palette1',
     name: '',
     job: '',
     email: '',
@@ -17,6 +17,16 @@ function App() {
     linkedin: '',
     github: '',
   });
+
+  const [arrow, setArrow] = useState('collapsed')
+
+const handleCollapse = (ev) => {
+  if (arrow === 'collapsed') {
+    setArrow('')
+  } else {
+    setArrow('collapsed')
+  }
+}
 
   const handleInput = (ev) => {
     const inputChange = ev.currentTarget.name;
@@ -77,8 +87,8 @@ function App() {
 
             <article className="blueSection__article">
               <div className="blueSection__article--group">
-                <div className="rectangle js_rectangle palette1"></div>
-                <h2 className="title js_preview_title palette1">
+                <div className={`rectangle js_rectangle ${data.palette}`}></div>
+                <h2 className={`title js_preview_title ${data.palette}`}>
                   {data.name || 'Nombre y apellido'}
                   {/* {data.name === '' ? 'Nombre y apellidos' : data.name} */}
                 </h2>
@@ -92,7 +102,7 @@ function App() {
               <ul className="blueSection__article--containerList">
                 <li className="item">
                   <a href={data.phone || ''} className="js-phoneIcon">
-                    <i className="icon fas fa-mobile-alt  js_icon palette1"></i>
+                    <i className={`icon fas fa-mobile-alt  js_icon ${data.palette}`}></i>
                   </a>
                 </li>
 
@@ -105,7 +115,7 @@ function App() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <i className="icon far fa-envelope js_icon palette1"></i>
+                    <i className={`icon far fa-envelope js_icon ${data.palette}`}></i>
                   </a>
                 </li>
 
@@ -116,7 +126,7 @@ function App() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <i className="icon fab fa-linkedin-in js_icon palette1"></i>
+                    <i className={`icon fab fa-linkedin-in js_icon ${data.palette}`}></i>
                   </a>
                 </li>
 
@@ -127,7 +137,7 @@ function App() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <i className="icon fab fa-github-alt js_icon palette1"></i>
+                    <i className={`icon fab fa-github-alt js_icon ${data.palette}`}></i>
                   </a>
                 </li>
               </ul>
@@ -135,7 +145,7 @@ function App() {
           </section>
           <section className="whiteSection">
             <fieldset className="design">
-              <legend className="design__legend js_collapsable_title_design js_title_list">
+              <legend onClick={handleCollapse} className={`design__legend js_collapsable_title_design js_title_list ${arrow}`}>
                 <div className="design__legend--wrapper">
                   <i className="far fa-object-ungroup design__legend--icon"></i>
                   <h2 className="design__legend--title">Diseña</h2>
@@ -154,7 +164,6 @@ function App() {
                       defaultValue="palette1"
                       className="checkbox"
                       checked={data.palette === 'palette1'}
-                
                     />
                     <div className="palette palette__first--firstColor"></div>
                     <div className="palette palette__first--secondColor"></div>
@@ -193,7 +202,7 @@ function App() {
             </fieldset>
 
             <fieldset className="fill">
-              <legend className="fill__anunc js_collapsable_title_fill js_title_list">
+              <legend onClick={handleCollapse} className="fill__anunc js_collapsable_title_fill js_title_list">
                 <div className="fill__anunc--wrapper">
                   <i className=" far fa-keyboard fill__anunc--wrapper--icon"></i>
                   <h2 className="fill__anunc--wrapper--h2">Rellena</h2>
@@ -308,7 +317,7 @@ function App() {
               </section>
             </fieldset>
             <fieldset className="share">
-              <legend className="share__legend js_collapsable_title_share js_title_list">
+              <legend onClick={handleCollapse} className="share__legend js_collapsable_title_share js_title_list">
                 <div className="share__legend--wrapper">
                   <i className="fas fa-share-alt share__legend--icon"></i>
                   <h2 className="share__legend--title">Comparte</h2>
