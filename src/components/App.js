@@ -18,15 +18,42 @@ function App() {
     github: '',
   });
 
-  const [arrow, setArrow] = useState('collapsed')
+  const [arrowShare, setArrowShare] = useState('collapsed');
+  const [rotateShare, setRotateShare] = useState('rotate');
 
-const handleCollapse = (ev) => {
-  if (arrow === 'collapsed') {
-    setArrow('')
-  } else {
-    setArrow('collapsed')
-  }
-}
+  const [arrowDesign, setArrowDesign] = useState('');
+  const [rotateDesign, setRotateDesign] = useState('');
+
+  const [arrowFill, setArrowFill] = useState('collapsed');
+  const [rotateFill, setRotateFill] = useState('rotate');
+
+  const handleCollapse = (ev) => {
+    if (ev.currentTarget.id === 'design') {
+      if (arrowDesign === 'collapsed') {
+        setArrowDesign('');
+        setRotateDesign('');
+      } else {
+        setArrowDesign('collapsed');
+        setRotateDesign('rotate');
+      }
+    } else if (ev.currentTarget.id === 'fill') {
+      if (arrowFill === 'collapsed') {
+        setArrowFill('');
+        setRotateFill('');
+      } else {
+        setArrowFill('collapsed');
+        setRotateFill('rotate');
+      }
+    } else if (ev.currentTarget.id === 'share') {
+      if (arrowShare === 'collapsed') {
+        setArrowShare('');
+        setRotateShare('');
+      } else {
+        setArrowShare('collapsed');
+        setRotateShare('rotate');
+      }
+    }
+  };
 
   const handleInput = (ev) => {
     const inputChange = ev.currentTarget.name;
@@ -67,6 +94,19 @@ const handleCollapse = (ev) => {
     // }
   };
 
+  const handleResetBtn = (ev) => {
+    ev.preventDefault();
+    setData({
+      palette: 'palette1',
+      name: '',
+      job: '',
+      email: '',
+      phone: '',
+      linkedin: '',
+      github: '',
+    });
+  };
+
   return (
     <div className="page">
       <header className="header">
@@ -81,6 +121,7 @@ const handleCollapse = (ev) => {
               className="blueSection__reset js_reset"
               type="reset"
               defaultValue="reset"
+              onClick={handleResetBtn}
             >
               <i className="blueSection__reset--icon far fa-trash-alt"></i>Reset
             </button>
@@ -102,7 +143,9 @@ const handleCollapse = (ev) => {
               <ul className="blueSection__article--containerList">
                 <li className="item">
                   <a href={data.phone || ''} className="js-phoneIcon">
-                    <i className={`icon fas fa-mobile-alt  js_icon ${data.palette}`}></i>
+                    <i
+                      className={`icon fas fa-mobile-alt  js_icon ${data.palette}`}
+                    ></i>
                   </a>
                 </li>
 
@@ -115,7 +158,9 @@ const handleCollapse = (ev) => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <i className={`icon far fa-envelope js_icon ${data.palette}`}></i>
+                    <i
+                      className={`icon far fa-envelope js_icon ${data.palette}`}
+                    ></i>
                   </a>
                 </li>
 
@@ -126,7 +171,9 @@ const handleCollapse = (ev) => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <i className={`icon fab fa-linkedin-in js_icon ${data.palette}`}></i>
+                    <i
+                      className={`icon fab fa-linkedin-in js_icon ${data.palette}`}
+                    ></i>
                   </a>
                 </li>
 
@@ -137,20 +184,28 @@ const handleCollapse = (ev) => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <i className={`icon fab fa-github-alt js_icon ${data.palette}`}></i>
+                    <i
+                      className={`icon fab fa-github-alt js_icon ${data.palette}`}
+                    ></i>
                   </a>
                 </li>
               </ul>
             </article>
           </section>
           <section className="whiteSection">
-            <fieldset className="design">
-              <legend onClick={handleCollapse} className={`design__legend js_collapsable_title_design js_title_list ${arrow}`}>
+            <fieldset className={`design ${arrowDesign}`}>
+              <legend
+                id="design"
+                onClick={handleCollapse}
+                className={`design__legend js_collapsable_title_design js_title_list`}
+              >
                 <div className="design__legend--wrapper">
                   <i className="far fa-object-ungroup design__legend--icon"></i>
                   <h2 className="design__legend--title">Diseña</h2>
                 </div>
-                <i className="fas fa-chevron-down design__legend--arrow js-arrow rotate"></i>
+                <i
+                  className={`fas fa-chevron-down design__legend--arrow js-arrow ${rotateDesign}`}
+                ></i>
               </legend>
               <div className="design__colors js_design_content">
                 <label>Colores</label>
@@ -201,13 +256,19 @@ const handleCollapse = (ev) => {
               </div>
             </fieldset>
 
-            <fieldset className="fill">
-              <legend onClick={handleCollapse} className="fill__anunc js_collapsable_title_fill js_title_list">
+            <fieldset className={`fill ${arrowFill}`}>
+              <legend
+                onClick={handleCollapse}
+                id="fill"
+                className="fill__anunc js_collapsable_title_fill js_title_list"
+              >
                 <div className="fill__anunc--wrapper">
                   <i className=" far fa-keyboard fill__anunc--wrapper--icon"></i>
                   <h2 className="fill__anunc--wrapper--h2">Rellena</h2>
                 </div>
-                <i className="fas fa-chevron-down fill__anunc--arrow js-arrow"></i>
+                <i
+                  className={`fas fa-chevron-down fill__anunc--arrow js-arrow ${rotateFill}`}
+                ></i>
               </legend>
               <section className="fill__form js_fill_content">
                 <label htmlFor="name" className="fill__form--required">
@@ -316,14 +377,20 @@ const handleCollapse = (ev) => {
                 />
               </section>
             </fieldset>
-            <fieldset className="share">
-              <legend onClick={handleCollapse} className="share__legend js_collapsable_title_share js_title_list">
+            <fieldset className={`share ${arrowShare}`}>
+              <legend
+                onClick={handleCollapse}
+                id="share"
+                className="share__legend js_collapsable_title_share js_title_list"
+              >
                 <div className="share__legend--wrapper">
                   <i className="fas fa-share-alt share__legend--icon"></i>
                   <h2 className="share__legend--title">Comparte</h2>
                 </div>
                 <a>
-                  <i className="fas fa-chevron-down js-arrow"></i>
+                  <i
+                    className={`fas fa-chevron-down js-arrow ${rotateShare}`}
+                  ></i>
                 </a>
               </legend>
               <div className="share__button js_share_content">
