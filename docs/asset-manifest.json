@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "./static/css/main.7eb23428.css",
-    "main.js": "./static/js/main.83a16020.js",
+    "main.js": "./static/js/main.9bc4bbaa.js",
     "static/media/user_image.png": "./static/media/user_image.cd984f341478a6824a81.png",
     "static/media/logo-truthy-and-the-booleans-50px.jpg": "./static/media/logo-truthy-and-the-booleans-50px.8e609f4f0e05ed1d2e3c.jpg",
     "static/media/logo-truthy-and-the-booleans-40px.jpg": "./static/media/logo-truthy-and-the-booleans-40px.c697693ccc1d44e85e32.jpg",
     "index.html": "./index.html",
     "main.7eb23428.css.map": "./static/css/main.7eb23428.css.map",
-    "main.83a16020.js.map": "./static/js/main.83a16020.js.map"
+    "main.9bc4bbaa.js.map": "./static/js/main.9bc4bbaa.js.map"
   },
   "entrypoints": [
     "static/css/main.7eb23428.css",
-    "static/js/main.83a16020.js"
+    "static/js/main.9bc4bbaa.js"
   ]
 }
