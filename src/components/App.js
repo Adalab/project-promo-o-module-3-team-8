@@ -1,23 +1,24 @@
 import '../style/App.scss';
-import { useState } from 'react';
-// import logoadalab from '../images/logo-adalab.png';
-// import awesomecards from '../images/logo-awesome-profile-cards.svg';
+import { useState, useEffect } from 'react';
 import truthysmall from '../images/logo-truthy-and-the-booleans-40px.jpg';
 import truthybig from '../images/logo-truthy-and-the-booleans-50px.jpg';
-// import truthytrans from '../images/logo-truthy-and-the-booleans-419px.png';
-// import userimage from '../images/user_image.png';
+import CallToApi from '../service/CallToApi';
 
 function App() {
+
+  const [dataCard, setDataCard] = useState("");
+
   const [data, setData] = useState({
     palette: 'palette1',
     name: '',
     job: '',
+    photo: {truthybig},
     email: '',
     phone: '',
     linkedin: '',
     github: '',
   });
-// cuando aprendamos componentes refactorizamos
+  // cuando aprendamos componentes refactorizamos
   const [arrowShare, setArrowShare] = useState('collapsed');
   const [rotateShare, setRotateShare] = useState('rotate');
 
@@ -102,12 +103,25 @@ function App() {
       name: '',
       job: '',
       email: '',
+      photo: {truthybig},
       phone: '',
       linkedin: '',
       github: '',
     });
   };
 
+
+
+  // Fetch y Botón de compartir
+  const handleSharebtn = (ev) => {
+    ev.preventDefault();
+    console.log("Entré al botón");
+    CallToApi(data).then((dataCard) => {
+     setDataCard(dataCard.cardUrl)
+    });
+  };
+
+ 
   return (
     <div className="page">
       <header className="header">
@@ -396,14 +410,17 @@ function App() {
               </legend>
               <div className="share__button js_share_content">
                 <p className="share__button--message js_error_message hidden"></p>
-                <button className="share__button--item js_btn_share gray">
+                <button
+                  className="share__button--item js_btn_share gray"
+                  onClick={handleSharebtn}
+                >
                   <i className="far fa-address-card share__button--icon"></i>
                   <span>Crear tarjeta</span>
                 </button>
                 <div className="share__paragraph js_share_twitter hidden">
                   <h3>La tarjeta ha sido creada:</h3>
                   <a
-                    href="/"
+                    href={dataCard}
                     className="share__paragraph--text js-url"
                     target="_blank"
                     rel="noreferrer"
