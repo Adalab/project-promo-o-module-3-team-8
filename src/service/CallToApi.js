@@ -1,7 +1,7 @@
 
   
   const CallToApi = (data) => {
-  console.log(data);
+ 
  return  fetch('https://awesome-profile-cards.herokuapp.com/card', {
     method: 'POST',
     body: JSON.stringify(data),
