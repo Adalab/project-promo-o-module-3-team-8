@@ -1,21 +1,11 @@
-function Preview(props) {
-  console.log(props);
+import '../style/Preview.scss';
+import ResetButton from './ResetButton';
 
-  const handleChangeResetBtn = (ev) => {
-    ev.preventDefault();
-    props.handleResetBtn();
-  };
+function Preview(props) {
   return (
     <section className="blueSection">
       {/* PREVIEW 2.1 */}
-      <button
-        className="blueSection__reset js_reset"
-        type="reset"
-        defaultValue="reset"
-        onClick={handleChangeResetBtn}
-      >
-        <i className="blueSection__reset--icon far fa-trash-alt"></i>Reset
-      </button>
+      <ResetButton handleResetBtn={props.handleResetBtn} />
 
       {/* PREVIEW  2.2*/}
       <article className="blueSection__article">
