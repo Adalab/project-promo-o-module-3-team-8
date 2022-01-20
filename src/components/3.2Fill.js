@@ -1,0 +1,126 @@
+const Fill = (props) => {
+    return(
+
+        <fieldset className={`fill ${props.arrowFill}`}>
+          <legend
+            // onClick={handleCollapse}
+            id="fill"
+            className="fill__anunc js_collapsable_title_fill js_title_list"
+          >
+            <div className="fill__anunc--wrapper">
+              <i className=" far fa-keyboard fill__anunc--wrapper--icon"></i>
+              <h2 className="fill__anunc--wrapper--h2">Rellena</h2>
+            </div>
+            <i
+              className={`fas fa-chevron-down fill__anunc--arrow js-arrow ${props.rotateFill}`}
+            ></i>
+          </legend>
+          <section className="fill__form js_fill_content">
+        
+            {/* section 3.2.1 */}
+            <label htmlFor="name" className="fill__form--required">
+              Nombre completo
+            </label>
+            <input
+            //   onChange={handleInput}
+              id="name"
+              className="fill__form--input js_name js_input"
+              type="text"
+              placeholder="Ej. Sally Jill"
+              name="name"
+            //   value={data.name}
+              required
+            />
+        
+            <label htmlFor="job" className="fill__form--required">
+              Puesto
+            </label>
+        
+            <input
+            //   onChange={handleInput}
+              type="text"
+              id="job"
+              name="job"
+              className="fill__form--input js_job js_input"
+              placeholder="Ej. front-end unicorn"
+            //   value={data.job}
+              required
+            />
+        
+            <label htmlFor="" className="fill__form--required">
+              Imagen de perfil
+            </label>
+        
+            <div className="div-container form__item--photo">
+              <label
+                htmlFor="image"
+                className="div-container__patata js__profile-trigger"
+              >
+                Añadir imagen
+              </label>
+              {/* <input type="file" id="image" name="image"
+                            accept="image/png, image/jpeg" defaultValue="Añadir imagen"
+                            className="div-container__button js__profile-upload-btn"/> */}
+              <div className="div-container__check js__profile-preview"></div>
+            </div>
+            <label htmlFor="email" className="fill__form--required">
+              Email
+            </label>
+        
+            <input
+            //   onChange={handleInput}
+              type="email"
+              className="fill__form--input js_email js_input"
+              id="email"
+              name="email"
+              placeholder="Ej. sally.jill@gmail.com"
+            //   value={data.email}
+              required
+            />
+        
+            <label htmlFor="phone" className="fill__form--required">
+              Teléfono
+            </label>
+        
+            <input
+            //   onChange={handleInput}
+              type="tel"
+              className="fill__form--input js_phone js_input"
+              id="phone"
+              placeholder=" Ej: 555-55-55-55"
+              name="phone"
+            //   value={data.phone}
+              href=""
+            />
+        
+            <label htmlFor="linkedin" className="fill__form--required">
+              LinkedIn
+            </label>
+        
+            <input
+            //   onChange={handleInput}
+              type="text"
+              className="fill__form--input js_linkedin js_input"
+              id="linkedin"
+              placeholder=" Ej: linkedin.com/in/sally.hill"
+            //   value={data.linkedin}
+              name="linkedin"
+            />
+        
+            <label htmlFor="github" className="fill__form--required">
+              Github
+            </label>
+            <input
+            //   onChange={handleInput}
+              type="text"
+              className="fill__form--input js_github js_input"
+              id="github"
+              placeholder=" Ej: @sally-hill"
+              name="github"
+            //   value={data.github}
+            />
+          </section>
+        </fieldset>)
+ }
+
+ export default Fill;

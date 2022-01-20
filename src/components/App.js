@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import truthysmall from '../images/logo-truthy-and-the-booleans-40px.jpg';
 import truthybig from '../images/logo-truthy-and-the-booleans-50px.jpg';
 import CallToApi from '../service/CallToApi';
+import WhiteSection from './3WhiteSection';
 
 function App() {
   const [dataCard, setDataCard] = useState('');
@@ -55,12 +56,13 @@ function App() {
     }
   };
 
-  const handleInput = (ev) => {
-    const inputChange = ev.currentTarget.name;
+  const handleInput = (name, value) => {
+    const inputChange = name;
     setData({
       ...data,
-      [inputChange]: ev.currentTarget.value,
+      [inputChange]: value,
     });
+ 
     // if (inputChange === "name") {
     //   setData({
     //     ...data,
@@ -210,252 +212,12 @@ function App() {
             </article>
           </section>
 
-          {/* section 3 */}
-          <section className="whiteSection">
+          <WhiteSection data={data} arrowDesign={arrowDesign} rotateDesign={rotateDesign} arrowFill={arrowFill} rotateFill={rotateFill} arrowShare={arrowShare} rotateShare={rotateShare} 
+          handleInput={handleInput}
+          //  value={}
+          /> 
 
-            {/* section 3.1 */}
-            <fieldset className={`design ${arrowDesign}`}>
-              <legend
-                id="design"
-                onClick={handleCollapse}
-                className={`design__legend js_collapsable_title_design js_title_list`}
-              >
-
-
-                <div className="design__legend--wrapper">
-                  <i className="far fa-object-ungroup design__legend--icon"></i>
-                  <h2 className="design__legend--title">Diseña</h2>
-                </div>
-                <i
-                  className={`fas fa-chevron-down design__legend--arrow js-arrow ${rotateDesign}`}
-                ></i>
-              </legend>
-              <div className="design__colors js_design_content">
-                <label>Colores</label>
-                <ul>
-
-                  {/* section 3.1.1 */}
-                  <li className="design__colors--item">
-                    <input
-                      onChange={handleInput}
-                      type="radio"
-                      id="palette1"
-                      name="palette"
-                      defaultValue="palette1"
-                      className="checkbox"
-                      checked={data.palette === 'palette1'}
-                    />
-                    <div className="palette palette__first--firstColor"></div>
-                    <div className="palette palette__first--secondColor"></div>
-                    <div className="palette palette__first--thirdColor"></div>
-                  </li>
-                  <li className="design__colors--item">
-                    <input
-                      onChange={handleInput}
-                      type="radio"
-                      id="palette2"
-                      name="palette"
-                      defaultValue="palette2"
-                      className="checkbox"
-                      checked={data.palette === 'palette2'}
-                    />
-                    <div className="palette palette__second--firstColor"></div>
-                    <div className="palette palette__second--secondColor"></div>
-                    <div className="palette palette__second--thirdColor"></div>
-                  </li>
-                  <li className="design__colors--item">
-                    <input
-                      onChange={handleInput}
-                      type="radio"
-                      id="palette3"
-                      name="palette"
-                      defaultValue="palette3"
-                      className="checkbox"
-                      checked={data.palette === 'palette3'}
-                    />
-                    <div className="palette palette__third--firstColor"></div>
-                    <div className="palette palette__third--secondColor"></div>
-                    <div className="palette palette__third--thirdColor"></div>
-                  </li>
-                </ul>
-              </div>
-            </fieldset>
-
-{/* section 3.2 */}
-            <fieldset className={`fill ${arrowFill}`}>
-              <legend
-                onClick={handleCollapse}
-                id="fill"
-                className="fill__anunc js_collapsable_title_fill js_title_list"
-              >
-                <div className="fill__anunc--wrapper">
-                  <i className=" far fa-keyboard fill__anunc--wrapper--icon"></i>
-                  <h2 className="fill__anunc--wrapper--h2">Rellena</h2>
-                </div>
-                <i
-                  className={`fas fa-chevron-down fill__anunc--arrow js-arrow ${rotateFill}`}
-                ></i>
-              </legend>
-              <section className="fill__form js_fill_content">
-
-                {/* section 3.2.1 */}
-                <label htmlFor="name" className="fill__form--required">
-                  Nombre completo
-                </label>
-                <input
-                  onChange={handleInput}
-                  id="name"
-                  className="fill__form--input js_name js_input"
-                  type="text"
-                  placeholder="Ej. Sally Jill"
-                  name="name"
-                  value={data.name}
-                  required
-                />
-
-                <label htmlFor="job" className="fill__form--required">
-                  Puesto
-                </label>
-
-                <input
-                  onChange={handleInput}
-                  type="text"
-                  id="job"
-                  name="job"
-                  className="fill__form--input js_job js_input"
-                  placeholder="Ej. front-end unicorn"
-                  value={data.job}
-                  required
-                />
-
-                <label htmlFor="" className="fill__form--required">
-                  Imagen de perfil
-                </label>
-
-                <div className="div-container form__item--photo">
-                  <label
-                    htmlFor="image"
-                    className="div-container__patata js__profile-trigger"
-                  >
-                    Añadir imagen
-                  </label>
-                  {/* <input type="file" id="image" name="image"
-                                accept="image/png, image/jpeg" defaultValue="Añadir imagen"
-                                className="div-container__button js__profile-upload-btn"/> */}
-                  <div className="div-container__check js__profile-preview"></div>
-                </div>
-                <label htmlFor="email" className="fill__form--required">
-                  Email
-                </label>
-
-                <input
-                  onChange={handleInput}
-                  type="email"
-                  className="fill__form--input js_email js_input"
-                  id="email"
-                  name="email"
-                  placeholder="Ej. sally.jill@gmail.com"
-                  value={data.email}
-                  required
-                />
-
-                <label htmlFor="phone" className="fill__form--required">
-                  Teléfono
-                </label>
-
-                <input
-                  onChange={handleInput}
-                  type="tel"
-                  className="fill__form--input js_phone js_input"
-                  id="phone"
-                  placeholder=" Ej: 555-55-55-55"
-                  name="phone"
-                  value={data.phone}
-                  href=""
-                />
-
-                <label htmlFor="linkedin" className="fill__form--required">
-                  LinkedIn
-                </label>
-
-                <input
-                  onChange={handleInput}
-                  type="text"
-                  className="fill__form--input js_linkedin js_input"
-                  id="linkedin"
-                  placeholder=" Ej: linkedin.com/in/sally.hill"
-                  value={data.linkedin}
-                  name="linkedin"
-                />
-
-                <label htmlFor="github" className="fill__form--required">
-                  Github
-                </label>
-                <input
-                  onChange={handleInput}
-                  type="text"
-                  className="fill__form--input js_github js_input"
-                  id="github"
-                  placeholder=" Ej: @sally-hill"
-                  name="github"
-                  value={data.github}
-                />
-              </section>
-            </fieldset>
-
-            {/* section 3.3 */}
-            <fieldset className={`share ${arrowShare}`}>
-              <legend
-                onClick={handleCollapse}
-                id="share"
-                className="share__legend js_collapsable_title_share js_title_list"
-              >
-                <div className="share__legend--wrapper">
-                  <i className="fas fa-share-alt share__legend--icon"></i>
-                  <h2 className="share__legend--title">Comparte</h2>
-                </div>
-                <a>
-                  <i
-                    className={`fas fa-chevron-down js-arrow ${rotateShare}`}
-                  ></i>
-                </a>
-              </legend>
-              <div className="share__button js_share_content">
-                <p className="share__button--message js_error_message hidden"></p>
-
-                 {/* section 3.3.1 */}
-                <button
-                  className="share__button--item js_btn_share gray"
-                  onClick={handleSharebtn}
-                >
-                  <i className="far fa-address-card share__button--icon"></i>
-                  <span>Crear tarjeta</span>
-                </button>
-                <div className="share__paragraph js_share_twitter hidden">
-                  <h3>La tarjeta ha sido creada:</h3>
-                  <a
-                    href={dataCard}
-                    className="share__paragraph--text js-url"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Este es el enlace a tu tarjeta: {dataCard}
-                  </a>
-                  <div className="share__paragraph--twButton">
-                    <a
-                      href="https://twitter.com/intent/tweet?text=Os%20comparto%20mi%20tarjeta%20de%20presentaci%C3%B3n%20hecha%20a%20trav%C3%A9s%20de%20la%20app%20web%20%22Awesome%20Profile%20Cards%22%20%20%23HTML%20%23CSS%20%23JS%20%20%23Adalab%20%23WomenInTech"
-                      target="_blank"
-                      className="share__paragraph--twLink js_tw_button"
-                      rel="noreferrer"
-                    >
-                      <span>Compartir en Twitter</span>
-                      <i className="fab fa-twitter share__paragraph--icon"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </fieldset>
-          </section>
+          
         </form>
       </main>
 
