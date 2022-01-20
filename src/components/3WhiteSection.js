@@ -8,7 +8,7 @@ const WhiteSection = (props) => {
   // Ahora hay una variable estado que recoge cuál es la sección en la que pinchamos, está design para que salga abierta por defecto
   const [sectionOpen, setSectionOpen] = useState('design');
 
-  // En esta función se le da a sectionopen el valor en el que estemos pinchando con el id
+  // En esta función le da a sectionopen el valor en el que estemos pinchando con el id
   const handleCollapse = (ev) => {
     setSectionOpen(ev.currentTarget.id);
   };
