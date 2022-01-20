@@ -3,6 +3,7 @@ import { useState } from 'react';
 import CallToApi from '../service/CallToApi';
 import Header from './Header';
 import Footer from './Footer';
+import Preview from './Preview';
 
 function App() {
   const [dataCard, setDataCard] = useState('');
@@ -63,8 +64,7 @@ function App() {
     });
   };
 
-  const handleResetBtn = (ev) => {
-    ev.preventDefault();
+  const handleResetBtn = () => {
     setData({
       palette: 'palette1',
       name: '',
@@ -90,85 +90,7 @@ function App() {
       <Header />
       <main>
         <form className="maincontainer" action="#" method="post">
-          <section className="blueSection">
-            {/* PREVIEW 2.1 */}
-            <button
-              className="blueSection__reset js_reset"
-              type="reset"
-              defaultValue="reset"
-              onClick={handleResetBtn}
-            >
-              <i className="blueSection__reset--icon far fa-trash-alt"></i>Reset
-            </button>
-
-            {/* PREVIEW  2.2*/}
-            <article className="blueSection__article">
-              <div className="blueSection__article--group">
-                <div className={`rectangle js_rectangle ${data.palette}`}></div>
-                <h2 className={`title js_preview_title ${data.palette}`}>
-                  {data.name || 'Nombre y apellido'}
-                  {/* {data.name === '' ? 'Nombre y apellidos' : data.name} */}
-                </h2>
-                <h5 className="subtitle js_preview_subtitle">
-                  {data.job || 'Front-End developer'}
-                </h5>
-              </div>
-
-              <div className="blueSection__article--photo js__profile-image"></div>
-
-              <ul className="blueSection__article--containerList">
-                {/* PREVIEW  2.2.1 */}
-                <li className="item">
-                  <a href={data.phone || ''} className="js-phoneIcon">
-                    <i
-                      className={`icon fas fa-mobile-alt  js_icon ${data.palette}`}
-                    ></i>
-                  </a>
-                </li>
-
-                <li className="item">
-                  <a
-                    href={`mailto:${
-                      data.email || 'email@gmail.com'
-                    }?Subject=Interesado%20en%20contactar%20contigo`}
-                    className="js-envelope "
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <i
-                      className={`icon far fa-envelope js_icon ${data.palette}`}
-                    ></i>
-                  </a>
-                </li>
-
-                <li className="item">
-                  <a
-                    href={data.linkedin || 'https://es.linkedin.com'}
-                    className="js-linkedinIcon "
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <i
-                      className={`icon fab fa-linkedin-in js_icon ${data.palette}`}
-                    ></i>
-                  </a>
-                </li>
-
-                <li className="item">
-                  <a
-                    href={data.github || 'https://github.com/'}
-                    className="js-githubIcon "
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <i
-                      className={`icon fab fa-github-alt js_icon ${data.palette}`}
-                    ></i>
-                  </a>
-                </li>
-              </ul>
-            </article>
-          </section>
+          <Preview data={data} handleResetBtn={handleResetBtn} />
 
           {/* section 3 */}
           <section className="whiteSection">
