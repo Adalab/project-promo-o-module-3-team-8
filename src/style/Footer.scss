@@ -1,6 +1,8 @@
+@import 'core/variables';
+
 .footer {
-  background-color: #FFFFFF;
-  border-top: 1px #D8D8D8 solid;
+  background-color: #ffffff;
+  border-top: 1px #d8d8d8 solid;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,7 +18,7 @@
 .copyFooter {
   font-family: $fontMain;
   font-size: 14px;
-  color: #B8B8B9;
+  color: #b8b8b9;
   text-transform: none;
   object-fit: contain;
   @media all and(min-width:768px) {
