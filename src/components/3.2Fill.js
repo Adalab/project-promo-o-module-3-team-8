@@ -1,9 +1,14 @@
 const Fill = (props) => {
+
+  const handleInput = (ev) => {
+    props.handleInput(ev.currentTarget.name, ev.currentTarget.value);
+  };
+
     return(
 
-        <fieldset className={`fill ${props.arrowFill}`}>
+        <fieldset className={`fill ${props.open ? '' : 'collapsed'}`}>
           <legend
-            // onClick={handleCollapse}
+           onClick={props.handleCollapseFn}
             id="fill"
             className="fill__anunc js_collapsable_title_fill js_title_list"
           >
@@ -12,7 +17,7 @@ const Fill = (props) => {
               <h2 className="fill__anunc--wrapper--h2">Rellena</h2>
             </div>
             <i
-              className={`fas fa-chevron-down fill__anunc--arrow js-arrow ${props.rotateFill}`}
+              className={`fas fa-chevron-down fill__anunc--arrow js-arrow ${props.open ? '' : 'rotate'}`}
             ></i>
           </legend>
           <section className="fill__form js_fill_content">
@@ -22,13 +27,13 @@ const Fill = (props) => {
               Nombre completo
             </label>
             <input
-            //   onChange={handleInput}
+             onChange={handleInput}
               id="name"
               className="fill__form--input js_name js_input"
               type="text"
               placeholder="Ej. Sally Jill"
               name="name"
-            //   value={data.name}
+             value={props.data.name}
               required
             />
         
@@ -37,13 +42,13 @@ const Fill = (props) => {
             </label>
         
             <input
-            //   onChange={handleInput}
+             onChange={handleInput}
               type="text"
               id="job"
               name="job"
               className="fill__form--input js_job js_input"
               placeholder="Ej. front-end unicorn"
-            //   value={data.job}
+              value={props.data.job}
               required
             />
         
@@ -68,13 +73,13 @@ const Fill = (props) => {
             </label>
         
             <input
-            //   onChange={handleInput}
+             onChange={handleInput}
               type="email"
               className="fill__form--input js_email js_input"
               id="email"
               name="email"
               placeholder="Ej. sally.jill@gmail.com"
-            //   value={data.email}
+             value={props.data.email}
               required
             />
         
@@ -83,13 +88,13 @@ const Fill = (props) => {
             </label>
         
             <input
-            //   onChange={handleInput}
+             onChange={handleInput}
               type="tel"
               className="fill__form--input js_phone js_input"
               id="phone"
               placeholder=" Ej: 555-55-55-55"
               name="phone"
-            //   value={data.phone}
+             value={props.data.phone}
               href=""
             />
         
@@ -98,12 +103,12 @@ const Fill = (props) => {
             </label>
         
             <input
-            //   onChange={handleInput}
+             onChange={handleInput}
               type="text"
               className="fill__form--input js_linkedin js_input"
               id="linkedin"
               placeholder=" Ej: linkedin.com/in/sally.hill"
-            //   value={data.linkedin}
+             value={props.data.linkedin}
               name="linkedin"
             />
         
@@ -111,13 +116,13 @@ const Fill = (props) => {
               Github
             </label>
             <input
-            //   onChange={handleInput}
+             onChange={handleInput}
               type="text"
               className="fill__form--input js_github js_input"
               id="github"
               placeholder=" Ej: @sally-hill"
               name="github"
-            //   value={data.github}
+             value={props.data.github}
             />
           </section>
         </fieldset>)

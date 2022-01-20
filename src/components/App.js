@@ -18,43 +18,6 @@ function App() {
     linkedin: '',
     github: '',
   });
-  // cuando aprendamos componentes refactorizamos
-  const [arrowShare, setArrowShare] = useState('collapsed');
-  const [rotateShare, setRotateShare] = useState('rotate');
-
-  const [arrowDesign, setArrowDesign] = useState('');
-  const [rotateDesign, setRotateDesign] = useState('');
-
-  const [arrowFill, setArrowFill] = useState('collapsed');
-  const [rotateFill, setRotateFill] = useState('rotate');
-
-  const handleCollapse = (ev) => {
-    if (ev.currentTarget.id === 'design') {
-      if (arrowDesign === 'collapsed') {
-        setArrowDesign('');
-        setRotateDesign('');
-      } else {
-        setArrowDesign('collapsed');
-        setRotateDesign('rotate');
-      }
-    } else if (ev.currentTarget.id === 'fill') {
-      if (arrowFill === 'collapsed') {
-        setArrowFill('');
-        setRotateFill('');
-      } else {
-        setArrowFill('collapsed');
-        setRotateFill('rotate');
-      }
-    } else if (ev.currentTarget.id === 'share') {
-      if (arrowShare === 'collapsed') {
-        setArrowShare('');
-        setRotateShare('');
-      } else {
-        setArrowShare('collapsed');
-        setRotateShare('rotate');
-      }
-    }
-  };
 
   const handleInput = (name, value) => {
     const inputChange = name;
@@ -62,38 +25,6 @@ function App() {
       ...data,
       [inputChange]: value,
     });
- 
-    // if (inputChange === "name") {
-    //   setData({
-    //     ...data,
-    //     name: ev.currentTarget.value,
-    //   });
-    // } else if (inputChange === "job") {
-    //   setData({
-    //     ...data,
-    //     job: ev.currentTarget.value,
-    //   });
-    // } else if (inputChange === "email") {
-    //   setData({
-    //     ...data,
-    //     email: ev.currentTarget.value,
-    //   });
-    // } else if (inputChange === "phone") {
-    //   setData({
-    //     ...data,
-    //     phone: ev.currentTarget.value,
-    //   });
-    // } else if (inputChange === "linkedin") {
-    //   setData({
-    //     ...data,
-    //     linkedin: ev.currentTarget.value,
-    //   });
-    // } else if (inputChange === "github") {
-    //   setData({
-    //     ...data,
-    //     github: ev.currentTarget.value,
-    //   });
-    // }
   };
 
   //al ser Reac y estar en V.E no es necesario volver a repintar, Reac se encarga solito.
@@ -121,7 +52,6 @@ function App() {
 
   return (
     <div className="page">
-
       {/* HEADER 1 */}
       <header className="header">
         <a href="./index.html">
@@ -131,7 +61,6 @@ function App() {
       <main>
         <form className="maincontainer" action="#" method="post">
           <section className="blueSection">
-
             {/* PREVIEW 2.1 */}
             <button
               className="blueSection__reset js_reset"
@@ -158,7 +87,6 @@ function App() {
               <div className="blueSection__article--photo js__profile-image"></div>
 
               <ul className="blueSection__article--containerList">
-
                 {/* PREVIEW  2.2.1 */}
                 <li className="item">
                   <a href={data.phone || ''} className="js-phoneIcon">
@@ -212,12 +140,11 @@ function App() {
             </article>
           </section>
 
-          <WhiteSection data={data} arrowDesign={arrowDesign} rotateDesign={rotateDesign} arrowFill={arrowFill} rotateFill={rotateFill} arrowShare={arrowShare} rotateShare={rotateShare} 
-          handleInput={handleInput}
-          //  value={}
-          /> 
-
-          
+          <WhiteSection
+            data={data}
+            handleInput={handleInput}
+            //  value={}
+          />
         </form>
       </main>
 

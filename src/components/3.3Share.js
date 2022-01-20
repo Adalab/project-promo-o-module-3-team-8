@@ -1,8 +1,8 @@
 const Share = (props) => {
     return (
-    <fieldset className={`share ${props.arrowShare}`}>
+    <fieldset className={`share ${props.open ? '' : 'collapsed'}`}>
     <legend
-      // onClick={handleCollapse}
+     onClick={props.handleCollapseFn}
       id="share"
       className="share__legend js_collapsable_title_share js_title_list"
     >
@@ -12,7 +12,7 @@ const Share = (props) => {
       </div>
       <a>
         <i
-          className={`fas fa-chevron-down js-arrow ${props.rotateShare}`}
+          className={`fas fa-chevron-down js-arrow ${props.open ? '' : 'rotate'}`}
         ></i>
       </a>
     </legend>
