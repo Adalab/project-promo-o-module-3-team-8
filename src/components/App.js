@@ -1,7 +1,5 @@
 import '../style/App.scss';
 import { useState, useEffect } from 'react';
-// import logoadalab from '../images/logo-adalab.png';
-// import awesomecards from '../images/logo-awesome-profile-cards.svg';
 import truthysmall from '../images/logo-truthy-and-the-booleans-40px.jpg';
 import truthybig from '../images/logo-truthy-and-the-booleans-50px.jpg';
 import CallToApi from '../services/CallToApi';
