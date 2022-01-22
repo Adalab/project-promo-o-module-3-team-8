@@ -5,6 +5,9 @@ import truthybig from '../images/logo-truthy-and-the-booleans-50px.jpg';
 import CallToApi from '../services/CallToApi';
 import ls from '../services/localStorage';
 
+function App() {
+  const [dataCard, setDataCard] = useState('');
+
   const [data, setData] = useState(
     ls.get('lsData', {
       palette: 'palette1',
