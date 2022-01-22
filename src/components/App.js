@@ -119,7 +119,6 @@ function App() {
 
   return (
     <div className="page">
-
       {/* HEADER 1 */}
       <header className="header">
         <a href="./index.html">
@@ -129,7 +128,6 @@ function App() {
       <main>
         <form className="maincontainer" action="#" method="post">
           <section className="blueSection">
-
             {/* PREVIEW 2.1 */}
             <button
               className="blueSection__reset js_reset"
@@ -156,7 +154,6 @@ function App() {
               <div className="blueSection__article--photo js__profile-image"></div>
 
               <ul className="blueSection__article--containerList">
-
                 {/* PREVIEW  2.2.1 */}
                 <li className="item">
                   <a href={data.phone || ''} className="js-phoneIcon">
@@ -212,7 +209,6 @@ function App() {
 
           {/* section 3 */}
           <section className="whiteSection">
-
             {/* section 3.1 */}
             <fieldset className={`design ${arrowDesign}`}>
               <legend
@@ -220,8 +216,6 @@ function App() {
                 onClick={handleCollapse}
                 className={`design__legend js_collapsable_title_design js_title_list`}
               >
-
-
                 <div className="design__legend--wrapper">
                   <i className="far fa-object-ungroup design__legend--icon"></i>
                   <h2 className="design__legend--title">Diseña</h2>
@@ -233,7 +227,6 @@ function App() {
               <div className="design__colors js_design_content">
                 <label>Colores</label>
                 <ul>
-
                   {/* section 3.1.1 */}
                   <li className="design__colors--item">
                     <input
@@ -281,7 +274,7 @@ function App() {
               </div>
             </fieldset>
 
-{/* section 3.2 */}
+            {/* section 3.2 */}
             <fieldset className={`fill ${arrowFill}`}>
               <legend
                 onClick={handleCollapse}
@@ -297,7 +290,6 @@ function App() {
                 ></i>
               </legend>
               <section className="fill__form js_fill_content">
-
                 {/* section 3.2.1 */}
                 <label htmlFor="name" className="fill__form--required">
                   Nombre completo
@@ -423,7 +415,7 @@ function App() {
               <div className="share__button js_share_content">
                 <p className="share__button--message js_error_message hidden"></p>
 
-                 {/* section 3.3.1 */}
+                {/* section 3.3.1 */}
                 <button
                   className="share__button--item js_btn_share gray"
                   onClick={handleSharebtn}
