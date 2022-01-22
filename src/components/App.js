@@ -115,6 +115,14 @@ function App() {
     });
   };
 
+  // Fetch y Botón de compartir
+  const handleSharebtn = (ev) => {
+    ev.preventDefault();
+    CallToApi(data).then((dataCard) => {
+      setDataCard(dataCard.cardUrl);
+    });
+  };
+
   return (
     <div className="page">
       <header className="header">
@@ -410,12 +418,12 @@ function App() {
                 <div className="share__paragraph js_share_twitter hidden">
                   <h3>La tarjeta ha sido creada:</h3>
                   <a
-                    href="/"
+                    href={dataCard}
                     className="share__paragraph--text js-url"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Este es el enlace a tu tarjeta
+                    Este es el enlace a tu tarjeta: {dataCard}
                   </a>
                   <div className="share__paragraph--twButton">
                     <a
