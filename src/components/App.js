@@ -4,16 +4,15 @@ import { useState, useEffect } from 'react';
 // import awesomecards from '../images/logo-awesome-profile-cards.svg';
 import truthysmall from '../images/logo-truthy-and-the-booleans-40px.jpg';
 import truthybig from '../images/logo-truthy-and-the-booleans-50px.jpg';
-// import truthytrans from '../images/logo-truthy-and-the-booleans-419px.png';
-// import userimage from '../images/user_image.png';
+import CallToApi from '../services/CallToApi';
 import ls from '../services/localStorage';
 
-function App() {
   const [data, setData] = useState(
     ls.get('lsData', {
       palette: 'palette1',
       name: '',
       job: '',
+      photo: { truthybig },
       email: '',
       phone: '',
       linkedin: '',
@@ -25,6 +24,7 @@ function App() {
     ls.set('lsData', data);
   }, [data]);
 
+  // cuando aprendamos componentes refactorizamos
   const [arrowShare, setArrowShare] = useState('collapsed');
   const [rotateShare, setRotateShare] = useState('rotate');
 
