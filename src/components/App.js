@@ -411,7 +411,10 @@ function App() {
               </legend>
               <div className="share__button js_share_content">
                 <p className="share__button--message js_error_message hidden"></p>
-                <button className="share__button--item js_btn_share gray">
+                <button
+                  className="share__button--item js_btn_share gray"
+                  onClick={handleSharebtn}
+                >
                   <i className="far fa-address-card share__button--icon"></i>
                   <span>Crear tarjeta</span>
                 </button>
