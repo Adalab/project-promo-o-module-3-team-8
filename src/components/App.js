@@ -1,22 +1,31 @@
 import '../style/App.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // import logoadalab from '../images/logo-adalab.png';
 // import awesomecards from '../images/logo-awesome-profile-cards.svg';
 import truthysmall from '../images/logo-truthy-and-the-booleans-40px.jpg';
 import truthybig from '../images/logo-truthy-and-the-booleans-50px.jpg';
 // import truthytrans from '../images/logo-truthy-and-the-booleans-419px.png';
 // import userimage from '../images/user_image.png';
+import ls from '../services/localStorage';
 
 function App() {
-  const [data, setData] = useState({
-    palette: 'palette1',
-    name: '',
-    job: '',
-    email: '',
-    phone: '',
-    linkedin: '',
-    github: '',
-  });
+  const [data, setData] = useState(
+    ls.get('lsData', {
+      palette: 'palette1',
+      name: '',
+      job: '',
+      email: '',
+      phone: '',
+      linkedin: '',
+      github: '',
+    })
+  );
+
+  console.log(data);
+
+  useEffect(() => {
+    ls.set('lsData', data);
+  }, [data]);
 
   const [arrowShare, setArrowShare] = useState('collapsed');
   const [rotateShare, setRotateShare] = useState('rotate');
