@@ -21,8 +21,6 @@ function App() {
     })
   );
 
-  console.log(data);
-
   useEffect(() => {
     ls.set('lsData', data);
   }, [data]);
