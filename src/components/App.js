@@ -2,21 +2,29 @@ import '../style/App.scss';
 import { useState, useEffect } from 'react';
 import truthysmall from '../images/logo-truthy-and-the-booleans-40px.jpg';
 import truthybig from '../images/logo-truthy-and-the-booleans-50px.jpg';
-import CallToApi from '../service/CallToApi';
+import CallToApi from '../services/CallToApi';
+import ls from '../services/localStorage';
 
 function App() {
   const [dataCard, setDataCard] = useState('');
 
-  const [data, setData] = useState({
-    palette: 'palette1',
-    name: '',
-    job: '',
-    photo: { truthybig },
-    email: '',
-    phone: '',
-    linkedin: '',
-    github: '',
-  });
+  const [data, setData] = useState(
+    ls.get('lsData', {
+      palette: 'palette1',
+      name: '',
+      job: '',
+      photo: { truthybig },
+      email: '',
+      phone: '',
+      linkedin: '',
+      github: '',
+    })
+  );
+
+  useEffect(() => {
+    ls.set('lsData', data);
+  }, [data]);
+
   // cuando aprendamos componentes refactorizamos
   const [arrowShare, setArrowShare] = useState('collapsed');
   const [rotateShare, setRotateShare] = useState('rotate');
