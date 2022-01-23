@@ -2,8 +2,11 @@ import '../style/App.scss';
 import { useState, useEffect } from 'react';
 import truthysmall from '../images/logo-truthy-and-the-booleans-40px.jpg';
 import truthybig from '../images/logo-truthy-and-the-booleans-50px.jpg';
+import defaultAvatar from '../images/user_image.png';
 import CallToApi from '../services/CallToApi';
 import ls from '../services/localStorage';
+import GetAvatar from './GetAvatar';
+import Profile from './Profile';
 
 function App() {
   const [dataCard, setDataCard] = useState('');
@@ -13,7 +16,7 @@ function App() {
       palette: 'palette1',
       name: '',
       job: '',
-      photo: { truthybig },
+      photo: '',
       email: '',
       phone: '',
       linkedin: '',
@@ -102,6 +105,14 @@ function App() {
     // }
   };
 
+  // Componente imagen
+  const updateAvatar = (avatar) => {
+    setData({
+      ...data,
+      photo: avatar,
+    });
+  };
+
   //al ser Reac y estar en V.E no es necesario volver a repintar, Reac se encarga solito.
   const handleResetBtn = (ev) => {
     ev.preventDefault();
@@ -110,7 +121,7 @@ function App() {
       name: '',
       job: '',
       email: '',
-      photo: { truthybig },
+      photo: '',
       phone: '',
       linkedin: '',
       github: '',
@@ -127,6 +138,8 @@ function App() {
 
   return (
     <div className="page">
+      {/* Componente foto de perfil */}
+
       {/* HEADER 1 */}
       <header className="header">
         <a href="./index.html">
@@ -159,7 +172,12 @@ function App() {
                 </h5>
               </div>
 
-              <div className="blueSection__article--photo js__profile-image"></div>
+              <div
+                className="blueSection__article--photo js__profile-image"
+                style={{
+                  backgroundImage: `url(${data.photo || defaultAvatar})`,
+                }}
+              ></div>
 
               <ul className="blueSection__article--containerList">
                 {/* PREVIEW  2.2.1 */}
@@ -328,22 +346,11 @@ function App() {
                   required
                 />
 
-                <label htmlFor="" className="fill__form--required">
-                  Imagen de perfil
-                </label>
+                <>
+                  <GetAvatar avatar={data.photo} updateAvatar={updateAvatar} />
+                  <Profile avatar={data.photo} />
+                </>
 
-                <div className="div-container form__item--photo">
-                  <label
-                    htmlFor="image"
-                    className="div-container__patata js__profile-trigger"
-                  >
-                    Añadir imagen
-                  </label>
-                  {/* <input type="file" id="image" name="image"
-                                accept="image/png, image/jpeg" defaultValue="Añadir imagen"
-                                className="div-container__button js__profile-upload-btn"/> */}
-                  <div className="div-container__check js__profile-preview"></div>
-                </div>
                 <label htmlFor="email" className="fill__form--required">
                   Email
                 </label>
