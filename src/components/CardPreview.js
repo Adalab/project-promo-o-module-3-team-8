@@ -1,4 +1,6 @@
 import CardPreviewIcons from './CardPreviewIcons';
+import defaultAvatar from '../images/user_image.png';
+import '../style/Preview.scss';
 
 function CardPreview(props) {
   return (
@@ -7,14 +9,18 @@ function CardPreview(props) {
         <div className={`rectangle js_rectangle ${props.data.palette}`}></div>
         <h2 className={`title js_preview_title ${props.data.palette}`}>
           {props.data.name || 'Nombre y apellido'}
-          {/* {data.name === '' ? 'Nombre y apellidos' : data.name} */}
         </h2>
         <h5 className="subtitle js_preview_subtitle">
           {props.data.job || 'Front-End developer'}
         </h5>
       </div>
 
-      <div className="blueSection__article--photo js__profile-image"></div>
+      <div
+        className="blueSection__article--photo js__profile-image"
+        style={{
+          backgroundImage: `url(${props.data.photo || defaultAvatar})`,
+        }}
+      ></div>
 
       <ul className="blueSection__article--containerList">
         <CardPreviewIcons

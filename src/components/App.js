@@ -1,24 +1,33 @@
 import '../style/App.scss';
-import { useState } from 'react';
-import CallToApi from '../service/CallToApi';
+import { useState, useEffect } from 'react';
+import CallToApi from '../services/CallToApi';
+import ls from '../services/localStorage';
+import GetAvatar from './GetAvatar';
+import Profile from './Profile';
 import Header from './Header';
-import Footer from './Footer';
 import Preview from './Preview';
+import Footer from './Footer';
 
 function App() {
   const [dataCard, setDataCard] = useState('');
 
-  const [data, setData] = useState({
-    palette: 'palette1',
-    name: '',
-    job: '',
-    photo: '',
-    email: '',
-    phone: '',
-    linkedin: '',
-    github: '',
-  });
-  // cuando aprendamos componentes refactorizamos
+  const [data, setData] = useState(
+    ls.get('lsData', {
+      palette: 'palette1',
+      name: '',
+      job: '',
+      photo: '',
+      email: '',
+      phone: '',
+      linkedin: '',
+      github: '',
+    })
+  );
+
+  useEffect(() => {
+    ls.set('lsData', data);
+  }, [data]);
+
   const [arrowShare, setArrowShare] = useState('collapsed');
   const [rotateShare, setRotateShare] = useState('rotate');
 
@@ -27,6 +36,8 @@ function App() {
 
   const [arrowFill, setArrowFill] = useState('collapsed');
   const [rotateFill, setRotateFill] = useState('rotate');
+
+  const [cardLink, setCardLink] = useState('hidden');
 
   const handleCollapse = (ev) => {
     if (ev.currentTarget.id === 'design') {
@@ -64,6 +75,15 @@ function App() {
     });
   };
 
+  // Componente imagen
+  const updateAvatar = (avatar) => {
+    setData({
+      ...data,
+      photo: avatar,
+    });
+  };
+
+  // Reset button
   const handleResetBtn = () => {
     setData({
       palette: 'palette1',
@@ -81,7 +101,7 @@ function App() {
   const handleSharebtn = (ev) => {
     ev.preventDefault();
     CallToApi(data).then((dataCard) => {
-      setDataCard(dataCard.cardUrl);
+      setDataCard(dataCard.cardURL);
     });
   };
 
@@ -205,22 +225,11 @@ function App() {
                   required
                 />
 
-                <label htmlFor="" className="fill__form--required">
-                  Imagen de perfil
-                </label>
+                <>
+                  <GetAvatar avatar={data.photo} updateAvatar={updateAvatar} />
+                  <Profile avatar={data.photo} />
+                </>
 
-                <div className="div-container form__item--photo">
-                  <label
-                    htmlFor="image"
-                    className="div-container__patata js__profile-trigger"
-                  >
-                    Añadir imagen
-                  </label>
-                  {/* <input type="file" id="image" name="image"
-                                accept="image/png, image/jpeg" defaultValue="Añadir imagen"
-                                className="div-container__button js__profile-upload-btn"/> */}
-                  <div className="div-container__check js__profile-preview"></div>
-                </div>
                 <label htmlFor="email" className="fill__form--required">
                   Email
                 </label>
@@ -298,7 +307,9 @@ function App() {
                 </a>
               </legend>
               <div className="share__button js_share_content">
-                <p className="share__button--message js_error_message hidden"></p>
+                <p className="share__button--message js_error_message hidden">
+                  Por favor, rellena todos los campos
+                </p>
 
                 {/* section 3.3.1 */}
                 <button
@@ -308,7 +319,9 @@ function App() {
                   <i className="far fa-address-card share__button--icon"></i>
                   <span>Crear tarjeta</span>
                 </button>
-                <div className="share__paragraph js_share_twitter hidden">
+                <div
+                  className={`share__paragraph js_share_twitter ${cardLink}`}
+                >
                   <h3>La tarjeta ha sido creada:</h3>
                   <a
                     href={dataCard}
