@@ -1,9 +1,12 @@
 import '../style/App.scss';
 import { useState, useEffect } from 'react';
-import truthysmall from '../images/logo-truthy-and-the-booleans-40px.jpg';
-import truthybig from '../images/logo-truthy-and-the-booleans-50px.jpg';
 import CallToApi from '../services/CallToApi';
 import ls from '../services/localStorage';
+import GetAvatar from './GetAvatar';
+import Profile from './Profile';
+import Header from './Header';
+import Preview from './Preview';
+import Footer from './Footer';
 
 function App() {
   const [dataCard, setDataCard] = useState('');
@@ -13,7 +16,7 @@ function App() {
       palette: 'palette1',
       name: '',
       job: '',
-      photo: { truthybig },
+      photo: '',
       email: '',
       phone: '',
       linkedin: '',
@@ -25,7 +28,6 @@ function App() {
     ls.set('lsData', data);
   }, [data]);
 
-  // cuando aprendamos componentes refactorizamos
   const [arrowShare, setArrowShare] = useState('collapsed');
   const [rotateShare, setRotateShare] = useState('rotate');
 
@@ -34,6 +36,8 @@ function App() {
 
   const [arrowFill, setArrowFill] = useState('collapsed');
   const [rotateFill, setRotateFill] = useState('rotate');
+
+  const [cardLink, setCardLink] = useState('hidden');
 
   const handleCollapse = (ev) => {
     if (ev.currentTarget.id === 'design') {
@@ -69,46 +73,24 @@ function App() {
       ...data,
       [inputChange]: ev.currentTarget.value,
     });
-    // if (inputChange === "name") {
-    //   setData({
-    //     ...data,
-    //     name: ev.currentTarget.value,
-    //   });
-    // } else if (inputChange === "job") {
-    //   setData({
-    //     ...data,
-    //     job: ev.currentTarget.value,
-    //   });
-    // } else if (inputChange === "email") {
-    //   setData({
-    //     ...data,
-    //     email: ev.currentTarget.value,
-    //   });
-    // } else if (inputChange === "phone") {
-    //   setData({
-    //     ...data,
-    //     phone: ev.currentTarget.value,
-    //   });
-    // } else if (inputChange === "linkedin") {
-    //   setData({
-    //     ...data,
-    //     linkedin: ev.currentTarget.value,
-    //   });
-    // } else if (inputChange === "github") {
-    //   setData({
-    //     ...data,
-    //     github: ev.currentTarget.value,
-    //   });
-    // }
   };
 
-  const handleResetBtn = (ev) => {
-    ev.preventDefault();
+  // Componente imagen
+  const updateAvatar = (avatar) => {
+    setData({
+      ...data,
+      photo: avatar,
+    });
+  };
+
+  // Reset button
+  const handleResetBtn = () => {
     setData({
       palette: 'palette1',
       name: '',
       job: '',
       email: '',
+      photo: '',
       phone: '',
       linkedin: '',
       github: '',
@@ -119,95 +101,18 @@ function App() {
   const handleSharebtn = (ev) => {
     ev.preventDefault();
     CallToApi(data).then((dataCard) => {
-      setDataCard(dataCard.cardUrl);
+      setDataCard(dataCard.cardURL);
     });
   };
 
   return (
     <div className="page">
-      <header className="header">
-        <a href="./index.html">
-          <img className="logoHeader" src={truthybig} alt="Logo APC" />
-        </a>
-      </header>
+      <Header />
       <main>
         <form className="maincontainer" action="#" method="post">
-          <section className="blueSection">
-            <button
-              className="blueSection__reset js_reset"
-              type="reset"
-              defaultValue="reset"
-              onClick={handleResetBtn}
-            >
-              <i className="blueSection__reset--icon far fa-trash-alt"></i>Reset
-            </button>
+          <Preview data={data} handleResetBtn={handleResetBtn} />
 
-            <article className="blueSection__article">
-              <div className="blueSection__article--group">
-                <div className={`rectangle js_rectangle ${data.palette}`}></div>
-                <h2 className={`title js_preview_title ${data.palette}`}>
-                  {data.name || 'Nombre y apellido'}
-                  {/* {data.name === '' ? 'Nombre y apellidos' : data.name} */}
-                </h2>
-                <h5 className="subtitle js_preview_subtitle">
-                  {data.job || 'Front-End developer'}
-                </h5>
-              </div>
-
-              <div className="blueSection__article--photo js__profile-image"></div>
-
-              <ul className="blueSection__article--containerList">
-                <li className="item">
-                  <a href={data.phone || ''} className="js-phoneIcon">
-                    <i
-                      className={`icon fas fa-mobile-alt  js_icon ${data.palette}`}
-                    ></i>
-                  </a>
-                </li>
-
-                <li className="item">
-                  <a
-                    href={`mailto:${
-                      data.email || 'email@gmail.com'
-                    }?Subject=Interesado%20en%20contactar%20contigo`}
-                    className="js-envelope "
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <i
-                      className={`icon far fa-envelope js_icon ${data.palette}`}
-                    ></i>
-                  </a>
-                </li>
-
-                <li className="item">
-                  <a
-                    href={data.linkedin || 'https://es.linkedin.com'}
-                    className="js-linkedinIcon "
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <i
-                      className={`icon fab fa-linkedin-in js_icon ${data.palette}`}
-                    ></i>
-                  </a>
-                </li>
-
-                <li className="item">
-                  <a
-                    href={data.github || 'https://github.com/'}
-                    className="js-githubIcon "
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <i
-                      className={`icon fab fa-github-alt js_icon ${data.palette}`}
-                    ></i>
-                  </a>
-                </li>
-              </ul>
-            </article>
-          </section>
+          {/* section 3 */}
           <section className="whiteSection">
             <fieldset className={`design ${arrowDesign}`}>
               <legend
@@ -319,22 +224,11 @@ function App() {
                   required
                 />
 
-                <label htmlFor="" className="fill__form--required">
-                  Imagen de perfil
-                </label>
+                <>
+                  <GetAvatar avatar={data.photo} updateAvatar={updateAvatar} />
+                  <Profile avatar={data.photo} />
+                </>
 
-                <div className="div-container form__item--photo">
-                  <label
-                    htmlFor="image"
-                    className="div-container__patata js__profile-trigger"
-                  >
-                    Añadir imagen
-                  </label>
-                  {/* <input type="file" id="image" name="image"
-                                accept="image/png, image/jpeg" defaultValue="Añadir imagen"
-                                className="div-container__button js__profile-upload-btn"/> */}
-                  <div className="div-container__check js__profile-preview"></div>
-                </div>
                 <label htmlFor="email" className="fill__form--required">
                   Email
                 </label>
@@ -410,7 +304,11 @@ function App() {
                 </a>
               </legend>
               <div className="share__button js_share_content">
-                <p className="share__button--message js_error_message hidden"></p>
+                <p className="share__button--message js_error_message hidden">
+                  Por favor, rellena todos los campos
+                </p>
+
+                {/* section 3.3.1 */}
                 <button
                   className="share__button--item js_btn_share gray"
                   onClick={handleSharebtn}
@@ -418,7 +316,9 @@ function App() {
                   <i className="far fa-address-card share__button--icon"></i>
                   <span>Crear tarjeta</span>
                 </button>
-                <div className="share__paragraph js_share_twitter hidden">
+                <div
+                  className={`share__paragraph js_share_twitter ${cardLink}`}
+                >
                   <h3>La tarjeta ha sido creada:</h3>
                   <a
                     href={dataCard}
@@ -445,10 +345,9 @@ function App() {
           </section>
         </form>
       </main>
-      <footer className="footer">
-        <small className="copyFooter">Awesome profile-cards &copy; 2021</small>
-        <img className="logoFooter" src={truthysmall} alt="Logo Adalab" />
-      </footer>
+
+      {/* FOOTER 4*/}
+      <Footer />
     </div>
   );
 }
