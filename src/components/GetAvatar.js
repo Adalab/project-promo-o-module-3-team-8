@@ -30,8 +30,6 @@ function GetAvatar(props) {
           <input
             type="file"
             ref={myFileField}
-            // accept="image/png, image/jpeg"
-            // defaultValue="Añadir imagen"
             className="div-container__button js__profile-upload-btn"
             onChange={uploadImage}
           />

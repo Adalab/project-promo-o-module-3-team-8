@@ -38,6 +38,8 @@ function App() {
   const [arrowFill, setArrowFill] = useState('collapsed');
   const [rotateFill, setRotateFill] = useState('rotate');
 
+  const [cardLink, setCardLink] = useState('hidden');
+
   const handleCollapse = (ev) => {
     if (ev.currentTarget.id === 'design') {
       if (arrowDesign === 'collapsed') {
@@ -132,7 +134,7 @@ function App() {
   const handleSharebtn = (ev) => {
     ev.preventDefault();
     CallToApi(data).then((dataCard) => {
-      setDataCard(dataCard.cardUrl);
+      setDataCard(dataCard.cardURL);
     });
   };
 
@@ -428,7 +430,9 @@ function App() {
                 </a>
               </legend>
               <div className="share__button js_share_content">
-                <p className="share__button--message js_error_message hidden"></p>
+                <p className="share__button--message js_error_message hidden">
+                  Por favor, rellena todos los campos
+                </p>
 
                 {/* section 3.3.1 */}
                 <button
@@ -438,7 +442,9 @@ function App() {
                   <i className="far fa-address-card share__button--icon"></i>
                   <span>Crear tarjeta</span>
                 </button>
-                <div className="share__paragraph js_share_twitter hidden">
+                <div
+                  className={`share__paragraph js_share_twitter ${cardLink}`}
+                >
                   <h3>La tarjeta ha sido creada:</h3>
                   <a
                     href={dataCard}
