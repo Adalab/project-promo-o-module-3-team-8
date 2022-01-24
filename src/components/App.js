@@ -28,7 +28,6 @@ function App() {
     ls.set('lsData', data);
   }, [data]);
 
-  // cuando aprendamos componentes refactorizamos
   const [arrowShare, setArrowShare] = useState('collapsed');
   const [rotateShare, setRotateShare] = useState('rotate');
 
@@ -74,37 +73,6 @@ function App() {
       ...data,
       [inputChange]: ev.currentTarget.value,
     });
-    // if (inputChange === "name") {
-    //   setData({
-    //     ...data,
-    //     name: ev.currentTarget.value,
-    //   });
-    // } else if (inputChange === "job") {
-    //   setData({
-    //     ...data,
-    //     job: ev.currentTarget.value,
-    //   });
-    // } else if (inputChange === "email") {
-    //   setData({
-    //     ...data,
-    //     email: ev.currentTarget.value,
-    //   });
-    // } else if (inputChange === "phone") {
-    //   setData({
-    //     ...data,
-    //     phone: ev.currentTarget.value,
-    //   });
-    // } else if (inputChange === "linkedin") {
-    //   setData({
-    //     ...data,
-    //     linkedin: ev.currentTarget.value,
-    //   });
-    // } else if (inputChange === "github") {
-    //   setData({
-    //     ...data,
-    //     github: ev.currentTarget.value,
-    //   });
-    // }
   };
 
   // Componente imagen
@@ -115,7 +83,6 @@ function App() {
     });
   };
 
-  //al ser Reac y estar en V.E no es necesario volver a repintar, Reac se encarga solito.
   const handleResetBtn = (ev) => {
     ev.preventDefault();
     setData({
