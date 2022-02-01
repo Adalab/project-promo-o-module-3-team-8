@@ -1,3 +1,6 @@
+import GetAvatar from "./GetAvatar";
+import Profile from "./Profile";
+
 const Fill = (props) => {
 
   const handleInput = (ev) => {
@@ -22,7 +25,6 @@ const Fill = (props) => {
           </legend>
           <section className="fill__form js_fill_content">
         
-            {/* section 3.2.1 */}
             <label htmlFor="name" className="fill__form--required">
               Nombre completo
             </label>
@@ -52,22 +54,9 @@ const Fill = (props) => {
               required
             />
         
-            <label htmlFor="" className="fill__form--required">
-              Imagen de perfil
-            </label>
-        
-            <div className="div-container form__item--photo">
-              <label
-                htmlFor="image"
-                className="div-container__patata js__profile-trigger"
-              >
-                Añadir imagen
-              </label>
-              {/* <input type="file" id="image" name="image"
-                            accept="image/png, image/jpeg" defaultValue="Añadir imagen"
-                            className="div-container__button js__profile-upload-btn"/> */}
-              <div className="div-container__check js__profile-preview"></div>
-            </div>
+          <GetAvatar avatar={props.data.photo} updateAvatar={props.updateAvatar} />
+          <Profile avatar={props.data.photo} />
+         
             <label htmlFor="email" className="fill__form--required">
               Email
             </label>

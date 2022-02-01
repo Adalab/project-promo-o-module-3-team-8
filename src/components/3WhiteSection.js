@@ -29,8 +29,15 @@ const WhiteSection = (props) => {
         data={props.data}
         handleInput={props.handleInput}
         handleCollapseFn={handleCollapse}
+        updateAvatar={props.updateAvatar}
       />
-      <Share open={sectionOpen === 'share'} handleCollapseFn={handleCollapse} />
+      <Share
+        open={sectionOpen === 'share'}
+        handleCollapseFn={handleCollapse}
+        handleSharebtn={props.handleSharebtn}
+        dataCard={props.dataCard}
+        cardLink={props.cardLink}
+      />
     </section>
   );
 };
